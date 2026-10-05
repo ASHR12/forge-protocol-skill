@@ -60,9 +60,11 @@ flowchart TD
 ```text
 forge-protocol-skill/
   README.md                         this file
+  LICENSE                           MIT license for the repo
   tests/                            stdlib unittest suite (python3 -m unittest discover -s tests)
   forge-protocol/                   the skill
     SKILL.md                        modes, Rule 0, roles, the bar, the loop, handoff, non-negotiables
+    LICENSE                         MIT license, shipped with the skill
     THIRD_PARTY_NOTICES.md          upstream license text
     references/
       visual-bar.md                 writing criteria, the shared core, the bar ratchet, auto-FAIL signs
@@ -92,7 +94,7 @@ F=/path/to/forge-protocol/scripts               # wherever the skill lives
 python3 $F/forge.py init --mode sprint --title "Orb launch page" --pack web-ui --stack web
 python3 $F/forge.py bar publish --reason "initial bar"
 
-# 2. One round: capture, record, grade, validate, log
+# 2. One round: capture, record, grade, validate, log (write tools/views.json first; format in the capture.mjs header)
 node tools/capture.mjs --url http://localhost:5173 --views tools/views.json --build-id "$(python3 $F/forge.py build-id)"
 python3 $F/forge.py log --result CAPTURE
 python3 $F/forge.py snapshot R01

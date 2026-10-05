@@ -69,7 +69,7 @@ class CliTests(unittest.TestCase):
         self._tmp.cleanup()
 
     def test_help_and_dry_run_need_no_ffmpeg(self):
-        env = {"PATH": "/nonexistent"}
+        env = {"PATH": "/nonexistent", "PYTHONDONTWRITEBYTECODE": "1"}
         self.assertEqual(run_script("make_sxs.py", "--help", env=env).returncode, 0)
         res = run_script("make_sxs.py", "--project", str(self.root), "--dry-run", env=env)
         self.assertEqual(res.returncode, 0, res.stderr)

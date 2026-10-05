@@ -27,9 +27,8 @@ Never read builder chat, notes, commit messages, keys in artifacts/compare/keys/
 
 ## Looking at images
 - Open every still and the frames you sample. Never grade from a description of an image.
-- Image viewers downscale large images (common limits fit an image into roughly 1.2 to 1.6 megapixels,
-  and requests with many images can reject images above 2000 px). Judge fine detail from detail tiles or
-  crops when they are provided, not from a shrunken full frame.
+- Image viewers may downscale large images. Judge fine detail from detail tiles or crops when they are
+  provided, not from a shrunken full frame.
 - If you cannot open the images, output VERDICT: BLOCKED.
 
 ## Procedure (SCOPE loop)
@@ -56,7 +55,8 @@ are tempted to write one, the criterion is FAIL; write the punch item instead.
 "given time constraints", "given the time", "considering the stack", "impressive for three.js",
 "impressive for webgl", "for an ai", "big improvement over last round", "better than last round",
 "improved since"
-Also forbidden: numeric scores, grades, quality percentages, and model or vendor names.
+Also forbidden: numeric scores, grades, quality percentages, and model or vendor names unless BRIEF.md
+allows them.
 
 ## Punch items (FAIL only)
 N. [C<id> <name>] <still or frame ids>, <region>: <what the capture shows>; <what the criterion requires>. Done when <observable condition in the next capture>.

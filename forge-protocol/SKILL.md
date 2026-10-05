@@ -107,7 +107,7 @@ Spawn every critic and Diagnoser **fresh** through the environment's subagent or
 
 A critic WIN is necessary, not sufficient:
 1. **Harsh read**: open every current still yourself. One coherent art system, consistent scale and perspective, coherent light, nothing a viewer would call unfinished. If it fails, log `WIN-VOIDED`, tell the user once why, and continue rounds.
-2. **Pre-handoff checks**: a valid WIN on the current bar version; `MANIFEST.md` matches the delivered build; no `placeholder` rows in the ledger; third-party assets licensed; no secrets; no model or vendor names in artifacts unless `BRIEF.md` allows them.
+2. **Pre-handoff checks**: a valid WIN on the current bar version; `MANIFEST.md` matches the delivered build; no `placeholder` rows in the ledger; third-party assets licensed; no secrets; no model or vendor names in artifacts unless `BRIEF.md` allows them (then validate verdicts with `--allow-identifiers`).
 3. **Report** what was built, how to run it, the final stills, rounds used, bar versions and open caveats, with Publish still LOCKED unless the user unlocked it. Log `HANDOFF`.
 
 ## Non-negotiables

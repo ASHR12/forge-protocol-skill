@@ -27,7 +27,7 @@ except ImportError:
 
 
 def parse_args(argv: list[str]) -> argparse.Namespace:
-    argv = argv[argv.index("--") + 1:] if "--" in argv else []
+    argv = argv[argv.index("--") + 1:] if "--" in argv else ([] if bpy else argv[1:])
     parser = argparse.ArgumentParser(prog="blender_turnaround.py", description="Headless turnaround strip for one asset.")
     parser.add_argument("--input", required=True)
     parser.add_argument("--output", required=True)

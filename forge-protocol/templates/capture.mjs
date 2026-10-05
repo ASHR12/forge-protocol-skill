@@ -16,7 +16,7 @@ import path from 'node:path';
 const args = parseArgs(process.argv.slice(2));
 if (args.help || !args.url) {
   console.log('usage: node capture.mjs --url <url> [--views views.json] [--size WxH] [--dpr N] [--out dir] ' +
-    '[--frames N --walk-ms MS --walk-eval JS --frames-out dir] [--clock fixed|real] [--seed N] [--build-id id] ' +
+    '[--frames N --walk-ms MS --walk-path P --walk-hash H --walk-eval JS --frames-out dir] [--clock fixed|real] [--seed N] [--build-id id] ' +
     '[--channel chrome] [--color-scheme light|dark] [--settle-ms MS] [--ready-timeout-ms MS] [--freeze] ' +
     '[--fail-on-console-error]');
   process.exit(args.help ? 0 : 2);
