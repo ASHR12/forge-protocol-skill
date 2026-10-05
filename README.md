@@ -67,6 +67,7 @@ forge-protocol-skill/
       diagnoser-prompt.md     stuck-loop triggers, escalation ladder, Diagnoser prompt
       capture-and-tools.md    capture discipline and the tools an agent writes and verifies itself
       pipelines.md            picking a stack; Blender live or headless into Three.js/WebGPU or Unity
+      threejs/                Three.js module: router.md plus 17 topic files, read through the router
 ```
 
 ## License

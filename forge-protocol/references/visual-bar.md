@@ -45,10 +45,11 @@ Start from the closest pack in [criteria-packs.md](criteria-packs.md), then make
 - **Motivated**: a must-have or the quality target in `BRIEF.md` explains why it exists; cut it otherwise.
 - **Checkable in one pass**: use as many criteria as the goal needs. Long bars dilute attention; most land between 4 and 10.
 
-Two extras that suit almost any visual goal:
+Extras that suit almost any visual goal:
 
 - **Glance read**: blurred or seen small, each still keeps a clear focal point, value structure and mood (a squint test).
 - **Craft at native size**: detail crops at 100% hold up: crisp edges, no smeared textures, no aliasing on the hero subject.
+- **Form without post** (when the build uses post-processing): the no-post still of each hero view keeps its silhouette, material separation and focal point ([criteria-packs.md](criteria-packs.md), 3D pack).
 
 ## Evolving the bar honestly (the ratchet)
 

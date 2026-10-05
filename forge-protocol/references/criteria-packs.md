@@ -6,7 +6,10 @@ Capture recipes are defaults. Decide views, sizes and frame counts from the goal
 
 ## 3d: worlds, scenes, games
 
-**Capture**: one still per key view the brief names (hero, gameplay, detail) at the target display size; walkthrough frames across camera moves, lighting changes and interactions; a turnaround for every hero asset.
+**Capture**: one still per key view the brief names (hero, gameplay, detail) at the target display size; walkthrough frames across camera moves, lighting changes and interactions; a turnaround for every hero asset. Also:
+- In every mode, a no-post still of every hero view: the same view and state with post-processing off, keeping tone mapping and display output.
+- In Standard and Forge, near, design and far views of each hero subject, from its closest to its widest intended framing.
+- Diagnostic stills (a mask, normals, one pass alone) or a stress still (grazing light, another seed, the lowest tier) only when a criterion needs them. Name every variant in `MANIFEST.md`.
 
 **Criteria starters**
 - **Materials and light**: surfaces show plausible roughness and specular response with normal or bump breakup; one readable key light casts shadows; contact shadows where objects touch the ground; exposure stays inside a deliberate palette.
@@ -17,10 +20,19 @@ Capture recipes are defaults. Decide views, sizes and frame counts from the goal
 - **Nature craft** (rocks, plants, terrain): rocks show erosion and stratification; trunks curve and leaves are individual, casting foliage shadows; wind moves them; transition debris sits where objects meet the ground.
 - **Physics coupling** (vehicles, boats, cloth, crowds): motion responds to the same forces that drive the visuals (waves, wind, terrain) with visible feedback such as wakes, ripples or trails; nothing slides or floats.
 - **Diegetic and HUD UI** (when the scene carries UI): type hierarchy, framing and live controls stay legible at capture size and never cover the focal subject.
+- **Form without post**: PASS when the no-post still of every hero view keeps the subject's silhouette, material separation and focal point. FAIL signs: glow is an effect's only edge; the frame turns flat or illegible with post-processing off.
+- **Stable light and shadow**: PASS when shadows are crisp near the camera, reach as far as the view needs, and hold still across walkthrough frames, and ambient occlusion darkens only creases and contacts. FAIL signs: crawling or shimmering shadow edges; acne stripes; shadows detached from their casters; visible cascade seams; dark halos around objects; sunlit faces grayed by AO.
+- **Camera and framing**: PASS when each named view frames its subject at its intended share of the frame, with a level horizon and one clear focal point, and the camera never clips into geometry or the ground. FAIL signs: a subject cut off or lost in the frame; an unmotivated tilt; the camera inside walls or terrain.
+- **Motion settles**: PASS when moves and transitions ease in and out and end at rest, with no hitch, snap, drift or jitter across walkthrough frames. FAIL signs: a stall mid-transition; a jump at the end; residual wobble at rest.
+- **Coupled surfaces** (when the scene has weather, water or wind): PASS when surfaces respond to the causes the scene shows: wet is darker and glossier together, snow and moss sit on upward faces, water reflects the visible sky with the glint under the sun, and rain, plants and smoke follow one wind. FAIL signs: wet ground that only darkens; snow on vertical faces; reflections of a different sky; particles and plants blowing different ways.
+- **Effects from causes** (when the scene has effects): PASS when every effect starts at a visible cause (an impact point, an emitter, a light source), moves with its field, and still reads with bloom off. FAIL signs: sparks from nowhere; glow as an effect's only shape; effects detached from what causes them.
+- **Frame budget** (only when the brief names one): PASS when the build's own performance readout, shown in the walkthrough frames or a dedicated still, reads at or under the brief's frame-time target at the capture size and declared tier, with no spikes over the limit. FAIL signs: a readout over target; spikes during camera moves; no readout captured.
 
 **Escalation levers**: (1) light and post: shadow cascades and bias, ambient occlusion, tone mapping, fog, restrained bloom; (2) materials and shaders: PBR maps, custom shaders, macro variation against tiling; (3) authored geometry and scatter density: Blender assets, instancing; (4) render passes: depth and refraction targets, reflections, GPU simulation buffers; (5) engine change: WebGL to WebGPU, or the web stack to Unity.
 
-**Tools**: headless Blender for hero meshes and turnarounds, Blender over MCP for live look-dev, PolyHaven (CC0) textures and HDRIs. Details in [pipelines.md](pipelines.md).
+**Escalation guard**: tune post-processing only after the no-post still passes. Post never answers a form or material criterion.
+
+**Tools**: headless Blender for hero meshes and turnarounds, Blender over MCP for live look-dev, PolyHaven (CC0) textures and HDRIs. Details in [pipelines.md](pipelines.md). Three.js builds route through [threejs/router.md](threejs/router.md).
 
 ## web-ui: landing pages, product UI, app screens
 

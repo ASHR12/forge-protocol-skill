@@ -15,7 +15,7 @@ compatibility: >-
   Any agent environment. Works best with subagents or fresh sessions and an image-capable critic; without
   one, the user grades the visual criteria. Optional: browser automation, image tools, Blender, Unity.
 metadata:
-  version: "3.0.0"
+  version: "3.1.0"
 ---
 
 # Forge Protocol: the goal-driven blind-critic loop
@@ -149,6 +149,7 @@ Read `BRIEF.md`, `art/BAR.md`, `artifacts/rounds.log` and the latest verdict, th
 - [references/diagnoser-prompt.md](references/diagnoser-prompt.md): stuck-loop triggers, the escalation ladder, the Diagnoser prompt.
 - [references/capture-and-tools.md](references/capture-and-tools.md): capture discipline, and the tools you write and verify yourself.
 - [references/pipelines.md](references/pipelines.md): picking a stack; Blender live or headless into Three.js/WebGPU or Unity.
+- [references/threejs/router.md](references/threejs/router.md): read first on every Three.js build; routes the plan and each builder to the topic files its piece needs.
 
 ---
 

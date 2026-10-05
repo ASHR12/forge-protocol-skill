@@ -38,8 +38,10 @@ Before a hero asset enters the scene, render a turnaround and open it yourself.
 
 ## Web: Three.js, WebGPU, canvas and DOM
 
+- Three.js builds: read [threejs/router.md](threejs/router.md) first. It routes the plan and each builder to the topic files its piece needs, and sets the version policy.
+- At plan time, probe the installed three.js revision and the backend each target device and the capture route actually land on (WebGPU or the WebGL 2 fallback, on a hardware or software adapter), and record both in `BRIEF.md` under Stack.
 - Load Blender exports as `.glb`; keep texel density and scale consistent across assets (one unit is one meter unless the project says otherwise).
-- Expose two small hooks for capture when they help: a ready flag the page sets once assets and the first frames are in, and a set-view function for camera presets or UI states.
+- Expose small hooks for capture when they help: a ready flag the page sets once assets and the first frames are in, and a set-view function for camera presets or UI states. Three.js builds also expose a debug-mode switch and a quality-tier switch that change real pipeline output, reset, pause and step controls, and a metrics readout ([threejs/foundation.md](threejs/foundation.md)).
 - Prefer a fixed device pixel ratio and deterministic animation time during capture, so rounds compare cleanly.
 
 ## Unity

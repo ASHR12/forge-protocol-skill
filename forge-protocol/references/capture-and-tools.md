@@ -34,11 +34,13 @@ Write one when: you need many views, repeatable state or walkthrough frames. A s
 Good when it:
 - sets a fixed viewport and pixel ratio;
 - reaches each named view or state by URL, hash or a hook the build exposes, such as a ready flag and a set-view function;
+- sets the debug mode and quality tier through the build's hooks, and names each variant (final, no-post, a diagnostic view, another tier) in `MANIFEST.md`;
 - waits for the ready signal, and optionally pins time and seeds randomness;
 - takes walkthrough frames at even intervals across the main motion;
-- saves console errors, and writes `MANIFEST.md` with the build id and each image's real size.
-Verify: capture the same build twice and compare (same framing and state; animation timing within a frame); open every still and confirm it shows the view it claims; confirm the sizes match `BRIEF.md`.
-Headless browsers may render WebGL or WebGPU in software. If stills differ from a real browser, use a GPU-backed or headed browser, and keep one route for every round.
+- saves console errors, and writes `MANIFEST.md` with the build id and each image's real size;
+- on Three.js builds, reads from the running page and records in `MANIFEST.md` the three.js revision, the backend (WebGPU, noting compatibility mode, or the WebGL 2 fallback), the adapter (vendor and architecture, hardware or software), the browser (headed or headless), the pixel ratio, the canvas size and the tier.
+Verify: capture the same build twice and compare (same framing and state; animation timing within a frame); open every still and confirm it shows the view it claims; confirm the sizes match `BRIEF.md`. Prove each hook changes pixels: the no-post still differs from the final only where post-processing acts, and each debug mode and tier visibly changes the image. A hook that changes only a label is a bug.
+Headless browsers may hide WebGPU (the build then falls back to WebGL 2 with only a console warning), render it in software, or capture a black canvas. If stills differ from a real browser, or the recorded backend or adapter is not the one `BRIEF.md` targets, use a GPU-backed or headed browser, and keep one route for every round. Timings from a software adapter are not performance evidence. Three.js specifics are in [threejs/validation.md](threejs/validation.md).
 
 ### Capture for engines and native apps
 

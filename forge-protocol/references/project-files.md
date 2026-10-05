@@ -53,6 +53,7 @@ Rounds: <n> · Time: <minutes> · Check-ins: <cadence> · Diagnose after: <n> st
 
 ## Stack
 <stack, and the criteria packs the bar starts from>
+<Three.js builds: the pinned revision (for example r186), the renderer, the target backend and its fallback, quality tiers and what each keeps, and target devices with any frame budget>
 
 ## Policies
 - Publish stays LOCKED until the user explicitly unlocks it.
@@ -109,6 +110,8 @@ Written next to the stills on every capture. Every row carries the same build id
 | --- | --- | --- | --- | --- |
 | still-01.png | 3f9c2e1 | 1920x1080 | hero | 2026-10-05T12:00:00Z |
 ```
+
+On Three.js builds, add one provenance line above the table, read from the running page, such as `three.js r186 · backend webgpu (compat off) · adapter <vendor, architecture> (hardware) · browser <name, version> (headed) · DPR 1 · canvas 1920x1080 · tier high`. Name variants in the view column (`hero`, `hero no-post`, `hero near`), including any still taken at another tier or debug mode.
 
 ## Builder handback
 
