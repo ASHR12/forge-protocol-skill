@@ -9,7 +9,7 @@ Capture recipes are defaults. Decide views, sizes and frame counts from the goal
 **Capture**: one still per key view the brief names (hero, gameplay, detail) at the target display size; walkthrough frames across camera moves, lighting changes and interactions; a turnaround for every hero asset.
 
 **Criteria starters**
-- **Materials and light**: surfaces show plausible roughness and specular response with normal or bump breakup; one readable key light casts shadows; contact darkening where objects meet the ground; exposure stays inside a deliberate palette.
+- **Materials and light**: surfaces show plausible roughness and specular response with normal or bump breakup; one readable key light casts shadows; contact shadows where objects touch the ground; exposure stays inside a deliberate palette.
 - **Form and density**: hero objects are authored multi-part shapes, never primitive stand-ins; silhouettes read at camera distance; ground and set dressing carry the breakup the brief implies; no visible tile seams.
 - **Atmosphere and depth**: aerial perspective, haze or fog and value separation give a clear foreground, midground and background.
 - **Optical media** (water, glass, smoke): color and transparency change with depth; refraction, reflection or caustics appear where light would produce them; waves layer several scales without grid artifacts.
@@ -20,7 +20,7 @@ Capture recipes are defaults. Decide views, sizes and frame counts from the goal
 
 **Escalation levers**: (1) light and post: shadow cascades and bias, ambient occlusion, tone mapping, fog, restrained bloom; (2) materials and shaders: PBR maps, custom shaders, macro variation against tiling; (3) authored geometry and scatter density: Blender assets, instancing; (4) render passes: depth and refraction targets, reflections, GPU simulation buffers; (5) engine change: WebGL to WebGPU, or the web stack to Unity.
 
-**Tools**: headless Blender for hero meshes and turnarounds, Blender MCP for live look-dev, PolyHaven (CC0) textures and HDRIs. Details in [unity-and-blender-pipelines.md](unity-and-blender-pipelines.md).
+**Tools**: headless Blender for hero meshes and turnarounds, Blender over MCP for live look-dev, PolyHaven (CC0) textures and HDRIs. Details in [pipelines.md](pipelines.md).
 
 ## web-ui: landing pages, product UI, app screens
 

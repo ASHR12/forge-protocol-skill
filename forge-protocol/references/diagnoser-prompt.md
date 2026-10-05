@@ -1,12 +1,12 @@
 # Stuck-loop Diagnoser and escalation ladder
 
-Repeating the same punch list to the same builder burns budget without moving the result. When a loop stalls, a fresh Diagnoser finds the structural bottleneck and steers the builders up the escalation ladder. It never grades and never touches the bar; only a fresh critic can return WIN.
+Repeating the same punch list to the same builder burns budget without moving the result. When a loop stalls, a fresh Diagnoser finds the structural bottleneck and steers the builders up the escalation ladder. It never grades and never touches the bar; only a fresh critic, or the user when they grade, can return WIN.
 
 ## Triggers
 
-Run the Diagnoser when any of these holds (`forge.py status` reports the first three):
+Run the Diagnoser when any of these holds. Check the first three from `artifacts/rounds.log` and the saved verdicts after every round:
 
-- The same criterion has failed `stuck_after` consecutive rounds since the last steer (mode default: 2 in Sprint, 3 in Standard and Forge).
+- The same criterion has failed for the mode's diagnose count of consecutive rounds since the last steer (defaults: 2 in Sprint, 3 in Standard and Forge).
 - Two or more `RECAPTURE` verdicts in a row for the same round.
 - The build id did not change between two rounds, meaning the punch round changed nothing in the product.
 - A builder reports a technique or stack ceiling.
@@ -15,7 +15,7 @@ Run the Diagnoser when any of these holds (`forge.py status` reports the first t
 
 1. Pause punch rounds and log `DIAGNOSE-HOLD`.
 2. Spawn a fresh Diagnoser, separate from the builders and the critic, with the prompt below and file paths only.
-3. Dispatch the builders with `artifacts/diagnosis/R<n>-steer.md` as their primary brief and the latest punch list as secondary input. Log `DIAGNOSE-STEER` and, when the steer climbs a rung, `ESCALATE` with `--field rung=<n>`.
+3. Dispatch the builders with `artifacts/diagnosis/R<n>-steer.md` as their primary brief and the latest punch list as a secondary input. Log `DIAGNOSE-STEER` and, when the steer climbs a rung, `ESCALATE` with the rung number.
 4. Return to the normal round loop. Streak counting restarts after the steer.
 
 ## Escalation ladder
@@ -38,10 +38,9 @@ same criteria across several rounds. You do not edit code, you do not grade, and
 lower art/BAR.md. Inspect the evidence, find the root bottleneck, and write a steer brief to
 artifacts/diagnosis/R<n>-steer.md.
 
-Inputs (open them yourself): BRIEF.md, art/BAR.md, art/LOOK.md if present, the last three verdicts in
-artifacts/verdicts/, artifacts/rounds.log, the current stills and frames, round-over-round composites in
-artifacts/compare/ if present, the builders' short handbacks, and the source files or generation scripts
-behind the failing criteria.
+Inputs (open them yourself): BRIEF.md, art/BAR.md, the last three verdicts in artifacts/verdicts/,
+artifacts/rounds.log, the current stills and frames, round comparisons in artifacts/compare/ if any, the
+builders' short handbacks, and the source files or generation steps behind the failing criteria.
 
 Write exactly these five sections:
 1. Root cause: why the last rounds did not move the failing criteria. Examples: tuning shader constants
