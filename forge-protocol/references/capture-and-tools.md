@@ -44,7 +44,7 @@ Headless browsers may hide WebGPU (the build then falls back to WebGL 2 with onl
 
 ### Capture for engines and native apps
 
-Use the engine's own render-to-image route: one camera render per view at the `BRIEF.md` size (an editor or batch script in Unity, a render script in Blender, the app's screenshot export or the OS capture for native apps). Engine specifics are in [pipelines.md](pipelines.md). The capture discipline and the checks above apply unchanged.
+Use the engine's own render-to-image route: one camera render per view at the `BRIEF.md` size (a capture script in the Unity build or editor, a render script in Blender, the app's screenshot export or the OS capture for native apps). Engine specifics are in [pipelines.md](pipelines.md). For Unity, capture from a freshly launched player by default, prove the route on a known answer before round 1, and catch captures that fall back to a desktop screenshot, as [unity/validation.md](unity/validation.md) describes. The capture discipline and the checks above apply unchanged.
 
 ### Round comparisons (optional)
 

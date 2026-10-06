@@ -14,7 +14,7 @@ Run the Diagnoser when any of these holds. Check the first three from `artifacts
 ## Orchestrator steps
 
 1. Pause punch rounds and log `DIAGNOSE-HOLD`.
-2. Spawn a fresh Diagnoser, separate from the builders and the critic, with the prompt below and file paths only. On Three.js builds, include the paths to `references/threejs/validation.md` and to the topic files `PLAN.md` names for the failing pieces.
+2. Spawn a fresh Diagnoser, separate from the builders and the critic, with the prompt below and file paths only. On Three.js builds, include the paths to `references/threejs/validation.md` and to the topic files `PLAN.md` names for the failing pieces. On Unity builds, do the same with `references/unity/validation.md` and its topic files.
 3. Dispatch the builders with `artifacts/diagnosis/R<n>-steer.md` as their primary brief and the latest punch list as a secondary input. Log `DIAGNOSE-STEER` and, when the steer climbs a rung, `ESCALATE` with the rung number.
 4. Return to the normal round loop. Streak counting restarts after the steer.
 
@@ -42,7 +42,8 @@ Inputs (open them yourself): BRIEF.md, art/BAR.md, the last three verdicts in ar
 artifacts/rounds.log, the current stills and frames, round comparisons in artifacts/compare/ if any, the
 builders' short handbacks, and the source files or generation steps behind the failing criteria. On
 Three.js builds, also read threejs/validation.md and the topic files PLAN.md names for the failing
-pieces, at the paths you are given.
+pieces, at the paths you are given. On Unity builds, read unity/validation.md and its topic files
+the same way.
 
 Write exactly these five sections:
 1. Root cause: why the last rounds did not move the failing criteria. Examples: tuning shader constants

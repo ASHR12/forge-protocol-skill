@@ -36,8 +36,8 @@ Read this when you write the bar and capture spec for a Three.js build (orchestr
 | Capture | Sprint | Standard | Forge |
 | --- | --- | --- | --- |
 | Final still of every must-have view or state | yes | yes | yes |
-| No-post still of every hero view (same camera, time and tier; effect passes off, tone mapping and display output kept) | yes | yes | yes |
-| Near, design and far views of each hero subject | no | yes | yes |
+| No-post still of every hero view (when the build uses post-processing: same camera, time and tier; effect passes off, tone mapping and display output kept) | when post is used | when post is used | when post is used |
+| Near, design and far views of each primary hero subject | no | yes | yes |
 | Walkthrough frames across the main motion | when there is motion | when there is motion | when there is motion |
 | Temporal checkpoints (below) | no | when motion is a must-have | yes |
 | One stress still: grazing light, another seed, an extreme parameter or the lowest tier | no | yes | yes |
@@ -53,7 +53,7 @@ Name each variant after its view in the view column of `MANIFEST.md` ([../projec
 
 | Recipe | Camera and light | What it reveals |
 | --- | --- | --- |
-| Hero | the design bookmark, final and no-post | goal fit, form, material separation, focal point |
+| Hero | the design bookmark, final and (when post is used) no-post | goal fit, form, material separation, focal point |
 | Grazing-angle terrain | 1.5 to 2 m above the ground, looking along it, with a low sun | texture filtering, relief, LOD cracks, shadow acne, grounding |
 | Sun-facing and sun-behind vegetation | the same patch, once looking toward the sun and once away | back-light translucency, glints, shadow shape |
 | Shoreline | low, looking along the water's edge | depth color, the shore band, foam, hard intersection lines |
@@ -90,7 +90,7 @@ Name each variant after its view in the view column of `MANIFEST.md` ([../projec
 ## Proving the hooks
 
 **Build.** Before round 1, prove each hook on the running build:
-1. Capture final and no-post at one bookmark: they differ only by post-processing.
+1. When the build uses post-processing, capture final and no-post at one bookmark: they differ only by the effect passes.
 2. Capture every debug view the bar needs: each differs visibly from the final.
 3. Switch the tier down: metrics and pixels both change.
 4. Set the same time twice and capture: the stills match.
@@ -137,6 +137,7 @@ A WebGPU build captured on the fallback, or on a software adapter, doesn't meet 
 - WebGPU needs a secure context: `https` or `localhost`.
 - `navigator.gpu` can exist with no adapter behind it, and three.js then falls back with a single warning.
 - Dated note (October 2026): headless Chromium hides WebGPU unless started with an unsafe-WebGPU flag, and on Windows and Linux headless captures of WebGPU canvases can come out black or unsupported, while a headed browser (on a virtual display on Linux) avoids both.
+- When the headless capture route cannot acquire a hardware WebGPU adapter (or when the build relies on custom GLSL `ShaderMaterial`), targeting `WebGLRenderer` (WebGL 2) in `BRIEF.md` avoids black-canvas and fallback mismatches while keeping hardware-accelerated capture.
 - Machines without GPU acceleration (many CI runners and virtual machines) get a software adapter: slow, and unfit for timings.
 - Read pixels with browser-level screenshots, not by reading back the canvas: the WebGL drawing buffer is cleared after compositing.
 - Keep one route for every round ([../capture-and-tools.md](../capture-and-tools.md)).

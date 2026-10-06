@@ -7,7 +7,7 @@ The loop only needs captures of the running build, so any stack works. Pick one 
 | Stack | Good for | Assets | Capture |
 | :--- | :--- | :--- | :--- |
 | **Web**: Three.js / WebGPU, canvas, DOM | instant browser demos, shareable links, shader showcases, UI and data viz | code, Blender exporting `.glb`, licensed or CC0 assets | a browser capture ([capture-and-tools.md](capture-and-tools.md)) |
-| **Unity** | standalone builds, heavy physics, terrain tools, node-based shaders | Blender exporting `.fbx` or `.glb` into the project | an engine render per view (below) |
+| **Unity** | standalone builds, heavy physics, terrain tools, node-based shaders | Blender exporting `.fbx` (or `.glb` through Unity's glTF importer package) into the project | an engine render per view (below) |
 | **Other**: native, other engines, notebooks, video | whatever the goal needs | any | any route that writes stills from the live build |
 
 Only go 3D when the goal needs it. A 2D, canvas or DOM build that meets the bar beats a 3D one that doesn't.
@@ -46,7 +46,9 @@ Before a hero asset enters the scene, render a turnaround and open it yourself.
 
 ## Unity
 
-- Unity 6 and later can expose the editor to agents through Unity's official MCP integration, an editor package. Follow Unity's current documentation for installing it, starting its bridge, and approving the agent's connection.
-- Use it to manage scenes and objects and to read the console. Read the console after every script or shader change, and capture only when it shows zero errors.
-- Capture with an editor script that renders each view's camera to an image at the `BRIEF.md` size and saves it to `artifacts/stills/`. Run it from the editor, or in batch mode (`Unity -batchmode -projectPath . -executeMethod <Class.Method> -quit`). Rendering needs a GPU, so do not disable graphics. Then write `MANIFEST.md`.
-- Without the MCP integration, batch-mode capture alone still works.
+- Unity builds: read [unity/router.md](unity/router.md) first. It routes the plan and each builder to the topic files its piece needs, and sets the version policy.
+- Agents act on a Unity project through files they write, through batch mode with the Editor closed, or, once the user approves, through Unity's engine CLI and its editor package (`com.unity.pipeline`), which drive an open Editor. Tell the user and get a yes before running one-off code through the CLI. Routes, sign-in, exit codes and logs are in [unity/agent-control.md](unity/agent-control.md).
+- Don't set up the MCP server that shipped inside Unity's AI Assistant package: Unity has deprecated it in favor of the CLI. A community editor bridge is an option only when the user approves one.
+- Read the Editor log (the project's `Logs/Editor.log`, or the batch run's `-logFile`) or the CLI's recompile report after every script or shader change, and capture only when it shows zero errors and no deprecation warnings.
+- Capture with a script inside the build that saves each view at the `BRIEF.md` size to `artifacts/stills/`, preferably from a freshly launched player, and prove the route on a known answer before round 1. Rendering needs a GPU, so never pass `-nographics`. Then write `MANIFEST.md` with the Unity provenance line ([unity/validation.md](unity/validation.md)).
+- From Blender, export `.fbx`, Unity's own import format. `.glb` needs Unity's glTF importer package, which the editor doesn't bundle, so the agent adds it to the project once the user agrees. Don't rely on Unity importing `.blend` files directly, which works only where Blender is installed. Check scale and orientation on import ([unity/assets-and-import.md](unity/assets-and-import.md)).

@@ -78,7 +78,7 @@ Changes that alter the look or behavior with no change to your code:
 
 **Choose.**
 - `WebGPURenderer` (from `three/webgpu`) for new builds that use node materials and TSL, compute, or the current post stack (`RenderPipeline`, temporal AA, SSGI, voxel GI). It runs on WebGPU and falls back to a WebGL 2 backend on its own.
-- `WebGLRenderer` (from `three`) when the build depends on WebGL-only add-ons or existing GLSL, or draws thousands of independently moving meshes that can't be instanced or batched. Per-object cost is higher on `WebGPURenderer` today ([assets-and-performance.md](assets-and-performance.md)).
+- `WebGLRenderer` (from `three`) as a first-class choice when the build uses custom GLSL (`ShaderMaterial` or `onBeforeCompile`), depends on WebGL-only add-ons, draws thousands of independently moving meshes that can't be instanced or batched (per-object cost is higher on `WebGPURenderer` today; [assets-and-performance.md](assets-and-performance.md)), or when the headless capture route has no hardware WebGPU adapter. Never mix `ShaderMaterial` or `onBeforeCompile` with `WebGPURenderer`.
 - "WebGPU required" only when compute or storage buffers are the mechanism itself, such as GPU-placed grass drawn indirectly or FFT water. Then plan a reduced tier for the fallback, or a clear message on unsupported devices.
 
 **Build.**
@@ -206,12 +206,12 @@ Changes that alter the look or behavior with no change to your code:
 - metrics: draw calls, triangles, GPU time when available, memory, tier and backend ([assets-and-performance.md](assets-and-performance.md));
 - an error surface: renderer errors, device loss and shader failures, shown on the page or kept in a log the capture saves.
 
-Then prove each hook on the running build: the final and no-post stills differ only by post-processing, and each debug view visibly differs from the final ([validation.md](validation.md)).
+Then prove each hook on the running build: when the build uses post-processing, the final and no-post stills differ only by the effect passes, and each debug view visibly differs from the final ([validation.md](validation.md)).
 
 **Watch for.** A debug switch that changes a label but not the pipeline is worse than none, because it creates false evidence. A switch that rebuilds materials on every call adds compile stutter to captures. A ready flag set before precompiling lets the first capture miss shaders.
 
 **Diagnose.**
-- The no-post still is identical to the final → the switch isn't wired to the pipeline.
+- The no-post still is identical to the final on a build with post-processing → the switch isn't wired to the pipeline.
 - Objects missing only in the first round → the ready flag was set before loading or compiling finished.
 
 **Start here** (adjust to the goal): one object, `window.app`, with `ready`, `setView(name)`, `setDebugMode(mode)`, `setTier(name)`, `pause()`, `step(seconds)`, `setTime(seconds)`, `reset()` and `metrics()`. Keep whatever names the project already uses.

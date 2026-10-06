@@ -54,6 +54,7 @@ Rounds: <n> · Time: <minutes> · Check-ins: <cadence> · Diagnose after: <n> st
 ## Stack
 <stack, and the criteria packs the bar starts from>
 <Three.js builds: the pinned revision (for example r186), the renderer, the target backend and its fallback, quality tiers and what each keeps, and target devices with any frame budget>
+<Unity builds: the editor version and changeset (for example 6000.6.4f1), the template and render pipeline, the targets and their graphics APIs (Metal on the Mac; WebGL 2, or WebGPU with a WebGL 2 fallback, on the Web), quality tiers and what each keeps, the build profiles, the approved control routes, and target devices with any frame budget>
 
 ## Policies
 - Publish stays LOCKED until the user explicitly unlocks it.
@@ -112,6 +113,8 @@ Written next to the stills on every capture. Every row carries the same build id
 ```
 
 On Three.js builds, add one provenance line above the table, read from the running page, such as `three.js r186 · backend webgpu (compat off) · adapter <vendor, architecture> (hardware) · browser <name, version> (headed) · DPR 1 · canvas 1920x1080 · tier high`. Name variants in the view column (`hero`, `hero no-post`, `hero near`), including any still taken at another tier or debug mode.
+
+On Unity builds, the provenance line comes from the build's capture script ([unity/validation.md](unity/validation.md)), such as `Unity 6000.6.4f1 (<changeset>) · URP, asset PC_RPAsset · Metal · GPU <name> · quality PC · target macOS, profile <name> · player · Play mode · source screen 1920x1080 · step 1/60 s · seed 7 · fresh process`.
 
 ## Builder handback
 
